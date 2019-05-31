@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+++Express is a framework similar to react but for the backend, it can allow you to boilerplate some basic set up structures and then give you access to components such as Router
+
 - [ ] Describe Middleware?
+
+++Pretty much same as react, can be passed into a function to alter the flow of it, (validations, errors, etc)
 
 - [ ] Describe a Resource?
 
+++Data stored inside the DB that users can access and manipulate
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+++status 200's
+
 - [ ] How can we partition our application into sub-applications?
+
+++Using express Router we can break it down and import/export like react
 
 ## Project Setup
 
