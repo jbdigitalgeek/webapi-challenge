@@ -45,5 +45,23 @@ actionsRouter.post('/', async (req, res) => {
     } catch (error) {
       res.status(500).json({error: `${error}`});
     }
+});
+  
+actionsRouter.delete('/:id', async (req, res) => {
+
+     try {
+      const action = await Actions.get(req.params.id);
+  
+       if (action) {
+        await Actions.remove(req.params.id);
+        res.status(200).json(action);
+      } else {
+        res.status(400).json({message: 'Could not find action'});
+      }
+  
+     } catch {
+      res.status(500).json({error: 'Unable to remove action'});
+    }
   });
+  
 module.exports = actionsRouter;
