@@ -7,7 +7,7 @@ const Projects = require('./projectModel');
 
 const actionsRouter = express.Router();
 
-// actionsRouter.use(express.json());
+actionsRouter.use(express.json());
 
 actionsRouter.get('/', async (req, res) => {
     try {
@@ -32,4 +32,18 @@ actionsRouter.get('/:id', async (req, res) => {
     };
 });
 
+actionsRouter.post('/', async (req, res) => {
+    let { project_id, notes, description } = req.body;
+  
+     try {
+      if (project_id && description && notes) {
+        const newAction = Actions.insert(req.body);
+        res.status(201).json(newAction);
+      } else {
+        res.status(500).json({error: 'Could not add action.'});
+      }
+    } catch (error) {
+      res.status(500).json({error: `${error}`});
+    }
+  });
 module.exports = actionsRouter;
