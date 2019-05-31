@@ -82,7 +82,7 @@ actionsRouter.delete('/:id', async (req, res) => {
         res.status(400).json({message: 'Could not find action'});
       }
   
-     } catch {
+     } catch (error) {
       res.status(500).json({error: `${error}`});
     }
   });
