@@ -46,6 +46,29 @@ actionsRouter.post('/', async (req, res) => {
       res.status(500).json({error: `${error}`});
     }
 });
+
+actionsRouter.put('/:id', async (req, res) => {
+    let { id } = req.params;
+    let { project_id, notes, description } = req.body;
+  
+     try {
+      const action = await Actions.get(id);
+  
+       if (action) {
+        if (project_id && description && notes) {
+          await Actions.update(id, req.body);
+          res.status(200).json(action);
+        } else {
+          res.status(400).json({message: 'Could not update the action'})
+        }
+      } else {
+        res.status(400).json({message: 'Could not find the action'});
+      }
+  
+     } catch (err) {
+      res.status(500).json({error: `${error}`});
+    }
+  });
   
 actionsRouter.delete('/:id', async (req, res) => {
 
@@ -60,7 +83,7 @@ actionsRouter.delete('/:id', async (req, res) => {
       }
   
      } catch {
-      res.status(500).json({error: 'Unable to remove action'});
+      res.status(500).json({error: `${error}`});
     }
   });
   

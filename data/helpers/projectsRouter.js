@@ -8,8 +8,8 @@ projectRouter.get("/", async (req, res) => {
   try {
     const projects = await Projects.get();
     res.status(200).json(projects);
-  } catch (err) {
-    res.status(500).json({ error: "Unable to get projects" });
+  } catch (error) {
+    res.status(500).json({ error: `${error}` });
   }
 });
 
@@ -22,8 +22,8 @@ projectRouter.get("/:id", async (req, res) => {
     } else {
       res.status(400).json({ message: "Please provide an ID" });
     }
-  } catch (err) {
-    res.status(500).json({ error: "Unable to get project" });
+  } catch (error) {
+    res.status(500).json({ error: `${error}` });
   }
 });
 
@@ -38,8 +38,8 @@ projectRouter.post("/", async (req, res) => {
     } else {
       res.status(201).json(newProject);
     }
-  } catch (err) {
-    res.status(500).json({ error: "Unable to post new project" });
+  } catch (error) {
+    res.status(500).json({ error: `${error}`});
   }
 });
 
@@ -57,8 +57,8 @@ projectRouter.put('/:id', async (req, res) => {
         res.status(400).json({message: 'Could not find project'});
       }
   
-     } catch (err) {
-      res.status(500).json({error: 'Unable to update the project'});
+     } catch (error) {
+      res.status(500).json({error: `${error}`});
     }
   });
   
@@ -72,8 +72,9 @@ projectRouter.delete("/:id", async (req, res) => {
     } else {
       res.status(400).json({ message: "Could not find the project" });
     }
-  } catch (err) {
-    res.status(500).json({ error: "Unable to remove project" });
+  } catch (error) {
+    res.status(500).json({ error: `${error}`});
   }
 });
+
 module.exports = projectRouter;
